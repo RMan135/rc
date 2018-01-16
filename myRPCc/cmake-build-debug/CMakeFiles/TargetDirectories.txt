@@ -1,0 +1,3 @@
+/home/rbaisan/CLionProjects/connect4client/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/rbaisan/CLionProjects/connect4client/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/rbaisan/CLionProjects/connect4client/cmake-build-debug/CMakeFiles/connect4client.dir
