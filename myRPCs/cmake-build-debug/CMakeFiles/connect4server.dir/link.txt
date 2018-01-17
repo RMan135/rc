@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/connect4server.dir/main.cpp.o  -o connect4server 

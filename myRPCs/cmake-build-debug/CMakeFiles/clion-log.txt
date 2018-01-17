@@ -1,9 +1,1 @@
-/home/rbaisan/clion-2017.3.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/rbaisan/CLionProjects/connect4server
-CMake Error at CMakeLists.txt:9 (target_link_libraries):
-  Cannot specify link libraries for target "connect4server/lib" which is not
-  built by this project.
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/rbaisan/CLionProjects/connect4server/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/home/rbaisan/CLionProjects/connect4server/cmake-build-debug/CMakeFiles/CMakeError.log".
+CMakeLists.txt not found in /home/rbaisan/repos/myrpc/myRPCs

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/connect4server.iml" filepath="$PROJECT_DIR$/.idea/connect4server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/myRPCs.iml" filepath="$PROJECT_DIR$/.idea/myRPCs.iml" />
     </modules>
   </component>
 </project>

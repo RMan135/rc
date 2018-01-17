@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <iostream>
+#include <math.h>
 
 #define PORT 2643
 
@@ -24,6 +25,7 @@ char * helpMessage = "Available commands:\n"
         "   time            - Show server's local time\n"
         "   myip            - Show your IP address\n"
         "   ping <address>  - Ping an address. Use 'myself' instead of the address to ping your machine\n"
+        "   fact            - Receive a random fact\n"
         "   quit            - Quit session\n";
 
 struct thData{
@@ -33,7 +35,7 @@ struct thData{
     sockaddr_in clData;
 };
 
-int commandCount = 6;
+int commandCount = 7;
 
 enum Command{
     CMD_UNDEFINED = 0,
@@ -42,6 +44,7 @@ enum Command{
     CMD_TIME = 3,
     CMD_MYIP = 4,
     CMD_PING = 5,
+    CMD_FACT = 6
 };
 
 char * commandStr[]{
@@ -50,7 +53,8 @@ char * commandStr[]{
         "quit",
         "time",
         "myip",
-        "ping"
+        "ping",
+        "fact"
 };
 
 bool StartsWith(char * toStart, char * with)
@@ -85,8 +89,10 @@ Command GetCommand(char * buffer)
     Command command = CMD_UNDEFINED;
 
     for(int i = 1; i < commandCount; i++)
-        if(StartsWith(buffer, commandStr[i]))// && iswspace(strlen(commandStr[i])))
-            return (Command)i;
+        if(StartsWith(buffer, commandStr[i]) && iswspace(buffer[strlen(commandStr[i])]))
+        {
+            return (Command) i;
+        }
 
     return command;
 }
@@ -127,6 +133,17 @@ int PingCommand(char * arg, char * answer, char * clAddr)
     delete [] line;
     cmd = NULL;
     line = NULL;
+    return 0;
+}
+
+int RandomFact(char * answer)
+{
+    int randomLine = rand() % 100;
+    FILE * facts = fopen("facts.txt", "r");
+    for(int i = 0; i < randomLine; i++)
+    {
+        fgets(answer, 256, facts);
+    }
     return 0;
 }
 
@@ -195,6 +212,15 @@ void ThreadWork(void *arg)
                 {
                     char * answer = new char[512];
                     PingCommand(GetArgument(commandBuffer), answer, clAddr);
+                    SendMessage(tdL.cl, answer);
+                    delete [] answer;
+                    answer = NULL;
+                    break;
+                }
+                case CMD_FACT:
+                {
+                    char * answer = new char[256];
+                    RandomFact(answer);
                     SendMessage(tdL.cl, answer);
                     delete [] answer;
                     answer = NULL;
